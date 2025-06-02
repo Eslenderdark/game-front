@@ -51,7 +51,7 @@ export class HomePage implements OnInit {
 
   public player: any = {};
   public character: any = {};
-  public  salas: any[] = [];
+  public salas: any[] = [];
 
 
   public url_host: string = 'https://back-rpg.onrender.com';
@@ -97,6 +97,14 @@ export class HomePage implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             this.character = response;
+
+            // Actualizar localStorage con los datos del personaje
+            localStorage.setItem('nombrePersonaje', response.name); // Asumiendo que response.name contiene el nombre
+            localStorage.setItem('clasePersonaje', JSON.stringify(response.class)); // Asumiendo que response.class contiene la clase
+
+            // También actualizar las propiedades del componente por si acaso
+            this.nombrePersonaje = response.name;
+            this.clasePersonaje = response.class;
           }
         });
 
@@ -104,21 +112,21 @@ export class HomePage implements OnInit {
     });
 
 
-    
- // Escucha cuando el servidor pide las salas
-  this.socket.on('pedir_salas', () => {
-    this.socket.emit('enviar_salas', this.salas);
-  });
 
-  // Otros listeners opcionales
-  this.socket.on('sala_creada', (nuevaSala:any) => {
-    this.salas.push(nuevaSala);
-  });
+    // Escucha cuando el servidor pide las salas
+    this.socket.on('pedir_salas', () => {
+      this.socket.emit('enviar_salas', this.salas);
+    });
 
-  this.socket.on('todas_las_salas', (salasServidor:any) => {
-    this.salas = salasServidor;
-  });
-    
+    // Otros listeners opcionales
+    this.socket.on('sala_creada', (nuevaSala: any) => {
+      this.salas.push(nuevaSala);
+    });
+
+    this.socket.on('todas_las_salas', (salasServidor: any) => {
+      this.salas = salasServidor;
+    });
+
     // this.nombre = localStorage.getItem('nombrePersonaje') || 'Nombre no definido';
 
   }
@@ -136,28 +144,28 @@ export class HomePage implements OnInit {
     await modal.present();
   }
 
- crearSala(nombre: string) {
-  const nuevaSala = {
-    id: Date.now(),
-    nombre,
-    jugadores: this.character.name
-  };
+  crearSala(nombre: string) {
+    const nuevaSala = {
+      id: Date.now(),
+      nombre,
+      jugadores: this.character.name
+    };
 
-  this.socket.on('createroom', nuevaSala); // <- Enviar al servidor
+    this.socket.on('createroom', nuevaSala); // <- Enviar al servidor
 
-  return nuevaSala.id;
-}
+    return nuevaSala.id;
+  }
 
   unirsesala(room_num: number) {
-  const payload = {
-    code: room_num,
-    user_id: this.character.id  // o this.player.email si es único
-  };
+    const payload = {
+      code: room_num,
+      user_id: this.character.id  // o this.player.email si es único
+    };
 
-  this.socket.emit("join_room", payload);
+    this.socket.emit("join_room", payload);
 
-  this.router.navigate(['/room', { room: room_num, player: JSON.stringify(this.character) }]);
-}
+    this.router.navigate(['/room', { room: room_num, player: JSON.stringify(this.character) }]);
+  }
 
 
 }

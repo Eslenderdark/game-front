@@ -5,8 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="home-content">
-  <!-- Mostrar personaje solo si tienes nombre, clase y email -->
-  <div class="character-container" *ngIf="nombrePersonaje && clasePersonaje && player?.email">
+  <div class="character-container" *ngIf="nombrePersonaje && clasePersonaje">
     <ion-card>
       <ion-card-header>
         <ion-card-title>¡Bienvenido, {{ nombrePersonaje }}!</ion-card-title>
