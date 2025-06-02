@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Sala de Espera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-content">
+  <!-- Mostrar personaje solo si tienes nombre, clase y email -->
+  <div class="character-container" *ngIf="nombrePersonaje && clasePersonaje && player?.email">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>¡Bienvenido, {{ nombrePersonaje }}!</ion-card-title>
+        <ion-card-subtitle>Clase: {{ clasePersonaje.name }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-avatar slot="start">
+            <ion-icon [name]="clasePersonaje.icon" size="large"></ion-icon>
+          </ion-avatar>
+          <ion-label>
+            <p>HP: {{ clasePersonaje.hp }}</p>
+            <p>Fuerza: {{ clasePersonaje.strength }}</p>
+            <p>Defensa: {{ clasePersonaje.defense }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+
+
+  <ion-button expand="block" color="tertiary" (click)="abrirModalCrearSala()">
+    Crear nueva sala
+  </ion-button>
+  <ion-list *ngIf="salas.length > 0">
+    <ion-list-header>
+      <ion-label>Salas Creadas</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let sala of salas">
+      <ion-label>{{ sala.nombre }}</ion-label>
+      <ion-badge color="success">{{ sala.jugadores }} jugador</ion-badge>
+      <ion-button (click)=" unirsesala(sala.id)">Unirse Sala</ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

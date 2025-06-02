@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Sala de Juego - {{nombrePersonaje}} ({{clasePersonaje.name}})
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Código de la sala:</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2>{{ roomCode }}</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Jugadores en la sala ({{playersInRoom.length}})</ion-label>
+    </ion-list-header>
+
+    <!-- Tarjeta para cada jugador -->
+    <ion-card *ngFor="let player of playersInRoom">
+      <ion-card-header>
+        <ion-card-title>
+          {{ player.nombre }}
+          <ion-badge *ngIf="player.isYou" color="success">Tú</ion-badge>
+        </ion-card-title>
+        <ion-card-subtitle>Clase: {{ player.clase }}</ion-card-subtitle>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <ion-icon [name]="player.icon" size="large"></ion-icon>
+          </ion-avatar>
+          <ion-label>
+            <p>Email: {{ player.email }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

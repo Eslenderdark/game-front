@@ -1,0 +1,17 @@
+<ion-header translucent>
+  <ion-toolbar color="dark">
+    <ion-title>Crear Sala</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Nombre de la sala</ion-label>
+    <ion-input [(ngModel)]="nombreSala" type="text"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="crear()">Crear</ion-button>
+</ion-content>
