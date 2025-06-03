@@ -1,21 +1,21 @@
-<!-- create-player.page.html -->
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-title>Crear Jugador</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Nombre del jugador</ion-label>
-        <ion-input [(ngModel)]="playerName" required></ion-input>
-      </ion-item>
+  <div style="max-width: 400px; margin: auto; text-align: center;">
+    <ion-item>
+      <ion-label position="floating">Nombre del jugador</ion-label>
+      <ion-input [(ngModel)]="nombrePersonaje" type="text" maxlength="20"></ion-input>
+    </ion-item>
 
-      <ion-button expand="full" (click)="createPlayer()" [disabled]="!playerName">
-        Crear Jugador
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-button 
+      expand="block" 
+      (click)="crearPersonaje()" 
+      [disabled]="!nombrePersonaje || nombrePersonaje.trim().length === 0">
+      Registrar y continuar
+    </ion-button>
+  </div>
 </ion-content>

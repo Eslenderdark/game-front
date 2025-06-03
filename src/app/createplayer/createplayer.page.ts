@@ -31,21 +31,35 @@ export class CreateplayerPage {
   ) { }
 
   crearPersonaje() {
+    if (!this.nombrePersonaje || this.nombrePersonaje.trim().length === 0) {
+      alert('Por favor, ingresa un nombre válido.');
+      return;
+    }
+
     this.auth.user$.subscribe((userData) => {
+      if (!userData?.email) {
+        alert('No se pudo obtener el email del usuario. Por favor, inicia sesión de nuevo.');
+        return;
+      }
+
       const datosPersonaje = {
-        id: userData?.email,
-        name: this.nombrePersonaje,
+        id: userData.email,
+        name: this.nombrePersonaje.trim(),
         score: 0,
         gamesPlayed: 0
       };
 
       this.http.post(`${this.url_host}/crearpersonaje`, datosPersonaje).subscribe({
-        next: (response) => {
-          localStorage.setItem('nombrePersonaje', this.nombrePersonaje);
+        next: () => {
+          // Guardamos el nombre para usarlo en home
+          localStorage.setItem('nombrePersonaje', this.nombrePersonaje.trim());
+
+          // Redirigir a home
           this.router.navigate(['/home']);
         },
         error: (err) => {
           console.error('Error al crear personaje:', err);
+          alert('Error al registrar el jugador, intenta de nuevo.');
         }
       });
     });
