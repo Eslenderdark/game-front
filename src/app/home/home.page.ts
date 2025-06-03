@@ -54,7 +54,7 @@ export class HomePage implements OnInit {
   public  salas: any[] = [];
 
 
-  public url_host: string = 'https://back-rpg.onrender.com';
+  public url_host: string = 'https://game-cp5l.onrender.com';
   constructor(
     private auth: AuthService,
     private http: HttpClient,
