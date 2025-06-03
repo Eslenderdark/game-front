@@ -1,38 +1,23 @@
-<ion-content [fullscreen]="true">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Selecciona tu clase</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="create-player-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Crea tu personaje</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre de tu personaje</ion-label>
+          <ion-input [(ngModel)]="nombrePersonaje" type="text" 
+                    placeholder="Elige un nombre (3-12 caracteres)"
+                    minlength="3" maxlength="12"></ion-input>
+        </ion-item>
 
-  <!-- Input para el nombre del personaje -->
-  <ion-item>
-    <ion-label position="floating">Nombre del personaje</ion-label>
-    <ion-input [(ngModel)]="nombrePersonaje" type="text" placeholder="Escribe el nombre"></ion-input>
-  </ion-item>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" size-md="6" *ngFor="let role of roles">
-        <ion-card button (click)="seleccionarClase(role)">
-          <ion-card-header>
-            <ion-card-title>
-              <ion-icon [name]="role.icon"></ion-icon> {{ role.name }}
-            </ion-card-title>
-            <ion-card-subtitle>{{ role.description }}</ion-card-subtitle>
-          </ion-card-header>
-
-          <ion-card-content>
-            <p><strong>HP:</strong> {{ role.hp }}</p>
-            <p><strong>PC:</strong> {{ role.pc }}</p>
-            <p><strong>Fuerza:</strong> {{ role.strength }}</p>
-            <p><strong>Defensa:</strong> {{ role.defense }}</p>
-            <p><strong>Daño Mágico:</strong> {{ role.magicDMG }}</p>
-            <p><strong>Daño Físico:</strong> {{ role.physicalDMG }}</p>
-            <p><strong>Crítico:</strong> {{ role.crit_chance }}% / x{{ role.crit_DMG }}</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-button expand="block" (click)="crearPersonaje()" 
+                   [disabled]="!nombrePersonaje || nombrePersonaje.length < 3">
+          Crear Personaje
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
