@@ -2,12 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {
+  IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol,
+  IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
+  IonIcon, IonInput, IonItem, IonLabel
+} from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-createplayer',
   templateUrl: './createplayer.page.html',
   styleUrls: ['./createplayer.page.scss'],
+  standalone: true,
+  imports: [
+    CommonModule, FormsModule,
+    IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol,
+    IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
+    IonIcon, IonInput, IonItem, IonLabel
+  ],
 })
+
 export class CreateplayerPage implements OnInit {
 
   public playerDATA: any = {};
@@ -18,7 +33,7 @@ export class CreateplayerPage implements OnInit {
     private auth: AuthService,
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.auth.user$.subscribe(data => {
