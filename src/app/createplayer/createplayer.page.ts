@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
-  IonContent, IonCard, IonCardHeader, IonCardTitle, 
+  IonContent, IonCard, IonCardHeader, IonCardTitle, IonHeader, IonToolbar,
   IonCardContent, IonItem, IonLabel, IonInput, IonButton 
 } from '@ionic/angular/standalone';
 import { AuthService } from '@auth0/auth0-angular';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule, FormsModule,
-    IonContent, IonCard, IonCardHeader, IonCardTitle,
+    IonContent, IonCard, IonCardHeader, IonCardTitle,IonHeader, IonToolbar,
     IonCardContent, IonItem, IonLabel, IonInput, IonButton
   ],
 })
