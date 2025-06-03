@@ -27,7 +27,7 @@ export class CreateplayerPage implements OnInit {
 
   public playerDATA: any = {};
   public nombrePersonaje: string = '';
-  public url_host = 'https://back-rpg.onrender.com';
+  public url_host = 'https://game-cp5l.onrender.com';
 
   constructor(
     private auth: AuthService,
