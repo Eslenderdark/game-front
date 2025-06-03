@@ -17,6 +17,9 @@ export class LoginPage implements OnInit {
 
   public user: any;
 
+  public url_host: string = 'https://back-rpg.onrender.com';
+
+
   constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -33,19 +36,18 @@ export class LoginPage implements OnInit {
         localStorage.setItem('user', JSON.stringify(usuario));
 
         // Aquí consultamos al backend si el email ya está registrado
-        fetch(`http://tu-backend/player/${this.user.email}`)
+        fetch(`${this.url_host}/player/${this.user.email}`)
           .then(res => {
             if (res.status === 200) {
-              // Usuario existe, ir a home
               this.router.navigate(['/home']);
             } else if (res.status === 404) {
-              // Usuario NO existe, ir a createPlayer
               this.router.navigate(['/createplayer']);
             } else {
-              console.error('Error al consultar player');
+              console.error('Error al consultar player:', res.status);
             }
           })
           .catch(err => console.error('Error en fetch:', err));
+
       }
     });
   }
