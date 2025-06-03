@@ -1,23 +1,21 @@
-<ion-content class="ion-padding">
-  <div class="create-player-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Crea tu personaje</ion-card-title>
-      </ion-card-header>
-      
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Nombre de tu personaje</ion-label>
-          <ion-input [(ngModel)]="nombrePersonaje" type="text" 
-                    placeholder="Elige un nombre (3-12 caracteres)"
-                    minlength="3" maxlength="12"></ion-input>
-        </ion-item>
+<!-- create-player.page.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crear Jugador</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-        <ion-button expand="block" (click)="crearPersonaje()" 
-                   [disabled]="!nombrePersonaje || nombrePersonaje.length < 3">
-          Crear Personaje
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
-  </div>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre del jugador</ion-label>
+        <ion-input [(ngModel)]="playerName" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" (click)="createPlayer()" [disabled]="!playerName">
+        Crear Jugador
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
