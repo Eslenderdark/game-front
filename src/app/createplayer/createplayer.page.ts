@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
   IonContent, IonCard, IonCardHeader, IonCardTitle, IonHeader, IonToolbar,
-  IonCardContent, IonItem, IonLabel, IonInput, IonButton 
+  IonCardContent, IonItem, IonLabel, IonInput, IonButton, IonTitle
 } from '@ionic/angular/standalone';
 import { AuthService } from '@auth0/auth0-angular';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   imports: [
     CommonModule, FormsModule,
     IonContent, IonCard, IonCardHeader, IonCardTitle,IonHeader, IonToolbar,
-    IonCardContent, IonItem, IonLabel, IonInput, IonButton
+    IonCardContent, IonItem, IonLabel, IonInput, IonButton, IonTitle
   ],
 })
 export class CreateplayerPage {
